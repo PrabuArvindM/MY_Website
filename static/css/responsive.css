@@ -210,10 +210,45 @@ img, svg, video, iframe {
     cursor: pointer;
   }
 
-  /* Hero Section Mobile Order & 2x3 Quick Stats Grid */
+  /* Hero Section Mobile Order & Photo Display Fix */
+  #home {
+    height: auto !important;
+    min-height: 100vh !important;
+    padding-top: 100px !important;
+    padding-bottom: 60px !important;
+    overflow: visible !important;
+  }
+
   .hero-photo-wrapper {
-    order: -1;
-    margin-bottom: 10px;
+    order: -1 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin-bottom: 20px !important;
+    position: relative !important;
+    z-index: 10 !important;
+  }
+
+  .hero-photo-glow {
+    width: 220px !important;
+    height: 220px !important;
+    filter: blur(30px) !important;
+  }
+
+  .hero-photo-frame {
+    width: clamp(200px, 60vw, 260px) !important;
+    height: auto !important;
+    aspect-ratio: 4/5 !important;
+    transform: none !important;
+  }
+
+  .hero-photo {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 14px !important;
   }
 
   .hero-buttons {
