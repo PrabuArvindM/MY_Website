@@ -1,5 +1,5 @@
 # ==============================================================================
-# PRABU ARVIND M PORTFOLIO - PRODUCTION DOCKERFILE FOR GOOGLE CLOUD RUN
+# PRABU ARVIND M PORTFOLIO - PRODUCTION DOCKERFILE FOR RENDER & CLOUD DEPLOYMENT
 # ==============================================================================
 
 FROM python:3.12-slim as base
@@ -36,12 +36,8 @@ RUN useradd -m -u 1000 appuser && \
 
 USER appuser
 
-# Expose Cloud Run PORT
+# Expose PORT
 EXPOSE 8080
 
-# Healthcheck for container orchestration
-HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:${PORT}/health || exit 1
-
 # Start FastAPI application using Uvicorn
-CMD exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT} --workers 2
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8080}"]
