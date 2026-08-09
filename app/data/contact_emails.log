@@ -1,0 +1,681 @@
+2026-08-09 16:15:22,997 - NEW CONTACT FROM Dr. Sarah Connor (sarah.connor@cyberdyne.ai):
+--------------------------------
+New Portfolio Contact
+
+Name:
+Dr. Sarah Connor
+
+Email:
+sarah.connor@cyberdyne.ai
+
+Subject:
+AI Research Collaboration Proposal
+
+Message:
+
+We would love to discuss an AI computer vision and deep learning research collaboration with you.
+
+--------------------------------
+Sent from: https://myportfolio.com
+Time: 2026-08-09 16:15:22
+Client IP: 127.0.0.1
+
+==================================================
+2026-08-09 16:15:28,242 - NEW CONTACT FROM Test User (test@example.com):
+--------------------------------
+New Portfolio Contact
+
+Name:
+Test User
+
+Email:
+test@example.com
+
+Subject:
+Spam Test
+
+Message:
+
+Testing rate limit threshold for maximum 5 messages per hour.
+
+--------------------------------
+Sent from: https://myportfolio.com
+Time: 2026-08-09 16:15:28
+Client IP: 127.0.0.1
+
+==================================================
+2026-08-09 16:15:28,245 - NEW CONTACT FROM Test User (test@example.com):
+--------------------------------
+New Portfolio Contact
+
+Name:
+Test User
+
+Email:
+test@example.com
+
+Subject:
+Spam Test
+
+Message:
+
+Testing rate limit threshold for maximum 5 messages per hour.
+
+--------------------------------
+Sent from: https://myportfolio.com
+Time: 2026-08-09 16:15:28
+Client IP: 127.0.0.1
+
+==================================================
+2026-08-09 16:15:28,256 - NEW CONTACT FROM Test User (test@example.com):
+--------------------------------
+New Portfolio Contact
+
+Name:
+Test User
+
+Email:
+test@example.com
+
+Subject:
+Spam Test
+
+Message:
+
+Testing rate limit threshold for maximum 5 messages per hour.
+
+--------------------------------
+Sent from: https://myportfolio.com
+Time: 2026-08-09 16:15:28
+Client IP: 127.0.0.1
+
+==================================================
+2026-08-09 16:15:28,259 - NEW CONTACT FROM Test User (test@example.com):
+--------------------------------
+New Portfolio Contact
+
+Name:
+Test User
+
+Email:
+test@example.com
+
+Subject:
+Spam Test
+
+Message:
+
+Testing rate limit threshold for maximum 5 messages per hour.
+
+--------------------------------
+Sent from: https://myportfolio.com
+Time: 2026-08-09 16:15:28
+Client IP: 127.0.0.1
+
+==================================================
+2026-08-09 16:24:38,782 - NEW CONTACT FROM Developer Test (dev@example.com):
+--------------------------------
+New Portfolio Contact
+
+Name:
+Developer Test
+
+Email:
+dev@example.com
+
+Subject:
+Unlimited Dev Testing
+
+Message:
+
+Testing rate limit disabled state with ENABLE_RATE_LIMIT=false environment variable.
+
+--------------------------------
+Sent from: https://myportfolio.com
+Time: 2026-08-09 16:24:38
+Client IP: 127.0.0.1
+
+==================================================
+2026-08-09 16:24:38,783 - NEW CONTACT FROM Developer Test (dev@example.com):
+--------------------------------
+New Portfolio Contact
+
+Name:
+Developer Test
+
+Email:
+dev@example.com
+
+Subject:
+Unlimited Dev Testing
+
+Message:
+
+Testing rate limit disabled state with ENABLE_RATE_LIMIT=false environment variable.
+
+--------------------------------
+Sent from: https://myportfolio.com
+Time: 2026-08-09 16:24:38
+Client IP: 127.0.0.1
+
+==================================================
+2026-08-09 16:24:38,785 - NEW CONTACT FROM Developer Test (dev@example.com):
+--------------------------------
+New Portfolio Contact
+
+Name:
+Developer Test
+
+Email:
+dev@example.com
+
+Subject:
+Unlimited Dev Testing
+
+Message:
+
+Testing rate limit disabled state with ENABLE_RATE_LIMIT=false environment variable.
+
+--------------------------------
+Sent from: https://myportfolio.com
+Time: 2026-08-09 16:24:38
+Client IP: 127.0.0.1
+
+==================================================
+2026-08-09 16:24:38,786 - NEW CONTACT FROM Developer Test (dev@example.com):
+--------------------------------
+New Portfolio Contact
+
+Name:
+Developer Test
+
+Email:
+dev@example.com
+
+Subject:
+Unlimited Dev Testing
+
+Message:
+
+Testing rate limit disabled state with ENABLE_RATE_LIMIT=false environment variable.
+
+--------------------------------
+Sent from: https://myportfolio.com
+Time: 2026-08-09 16:24:38
+Client IP: 127.0.0.1
+
+==================================================
+2026-08-09 16:24:38,787 - NEW CONTACT FROM Developer Test (dev@example.com):
+--------------------------------
+New Portfolio Contact
+
+Name:
+Developer Test
+
+Email:
+dev@example.com
+
+Subject:
+Unlimited Dev Testing
+
+Message:
+
+Testing rate limit disabled state with ENABLE_RATE_LIMIT=false environment variable.
+
+--------------------------------
+Sent from: https://myportfolio.com
+Time: 2026-08-09 16:24:38
+Client IP: 127.0.0.1
+
+==================================================
+2026-08-09 16:24:38,788 - NEW CONTACT FROM Developer Test (dev@example.com):
+--------------------------------
+New Portfolio Contact
+
+Name:
+Developer Test
+
+Email:
+dev@example.com
+
+Subject:
+Unlimited Dev Testing
+
+Message:
+
+Testing rate limit disabled state with ENABLE_RATE_LIMIT=false environment variable.
+
+--------------------------------
+Sent from: https://myportfolio.com
+Time: 2026-08-09 16:24:38
+Client IP: 127.0.0.1
+
+==================================================
+2026-08-09 16:24:38,788 - NEW CONTACT FROM Developer Test (dev@example.com):
+--------------------------------
+New Portfolio Contact
+
+Name:
+Developer Test
+
+Email:
+dev@example.com
+
+Subject:
+Unlimited Dev Testing
+
+Message:
+
+Testing rate limit disabled state with ENABLE_RATE_LIMIT=false environment variable.
+
+--------------------------------
+Sent from: https://myportfolio.com
+Time: 2026-08-09 16:24:38
+Client IP: 127.0.0.1
+
+==================================================
+2026-08-09 16:24:38,789 - NEW CONTACT FROM Developer Test (dev@example.com):
+--------------------------------
+New Portfolio Contact
+
+Name:
+Developer Test
+
+Email:
+dev@example.com
+
+Subject:
+Unlimited Dev Testing
+
+Message:
+
+Testing rate limit disabled state with ENABLE_RATE_LIMIT=false environment variable.
+
+--------------------------------
+Sent from: https://myportfolio.com
+Time: 2026-08-09 16:24:38
+Client IP: 127.0.0.1
+
+==================================================
+2026-08-09 16:24:38,790 - NEW CONTACT FROM Developer Test (dev@example.com):
+--------------------------------
+New Portfolio Contact
+
+Name:
+Developer Test
+
+Email:
+dev@example.com
+
+Subject:
+Unlimited Dev Testing
+
+Message:
+
+Testing rate limit disabled state with ENABLE_RATE_LIMIT=false environment variable.
+
+--------------------------------
+Sent from: https://myportfolio.com
+Time: 2026-08-09 16:24:38
+Client IP: 127.0.0.1
+
+==================================================
+2026-08-09 16:24:38,791 - NEW CONTACT FROM Developer Test (dev@example.com):
+--------------------------------
+New Portfolio Contact
+
+Name:
+Developer Test
+
+Email:
+dev@example.com
+
+Subject:
+Unlimited Dev Testing
+
+Message:
+
+Testing rate limit disabled state with ENABLE_RATE_LIMIT=false environment variable.
+
+--------------------------------
+Sent from: https://myportfolio.com
+Time: 2026-08-09 16:24:38
+Client IP: 127.0.0.1
+
+==================================================
+2026-08-09 16:30:08,179 - NEW CONTACT FROM Prabu Arvind M (prabuarvindm@gmail.com):
+--------------------------------
+New Portfolio Contact
+
+Name:
+Prabu Arvind M
+
+Email:
+prabuarvindm@gmail.com
+
+Subject:
+Job Offer
+
+Message:
+
+this is my number pls contact 9876543211
+
+--------------------------------
+Sent from: https://myportfolio.com
+Time: 2026-08-09 16:30:08
+Client IP: 127.0.0.1
+
+==================================================
+2026-08-09 16:30:14,557 - NEW CONTACT FROM Prabu Arvind M (prabuarvindm@gmail.com):
+--------------------------------
+New Portfolio Contact
+
+Name:
+Prabu Arvind M
+
+Email:
+prabuarvindm@gmail.com
+
+Subject:
+Job Offer
+
+Message:
+
+this is my number pls contact 9876543211
+
+--------------------------------
+Sent from: https://myportfolio.com
+Time: 2026-08-09 16:30:14
+Client IP: 127.0.0.1
+
+==================================================
+2026-08-09 16:30:18,326 - NEW CONTACT FROM Prabu Arvind M (prabuarvindm@gmail.com):
+--------------------------------
+New Portfolio Contact
+
+Name:
+Prabu Arvind M
+
+Email:
+prabuarvindm@gmail.com
+
+Subject:
+Job Offer
+
+Message:
+
+this is my number pls contact 9876543211
+
+--------------------------------
+Sent from: https://myportfolio.com
+Time: 2026-08-09 16:30:18
+Client IP: 127.0.0.1
+
+==================================================
+2026-08-09 16:32:45,038 - NEW CONTACT FROM Prabu Arvind M (prabuarvindm@gmail.com):
+--------------------------------
+New Portfolio Contact
+
+Name:
+Prabu Arvind M
+
+Email:
+prabuarvindm@gmail.com
+
+Subject:
+Job Offer
+
+Message:
+
+this is my number pls contact 9876543211 for further details
+
+--------------------------------
+Sent from: https://myportfolio.com
+Time: 2026-08-09 16:32:45
+Client IP: 127.0.0.1
+
+==================================================
+2026-08-09 16:35:27,373 - DISPATCHED OTP [654520] TO prabuarvindm@gmail.com:
+Hello,
+
+Your verification code is:
+
+654520
+
+This code is valid for 5 minutes.
+If you did not request this code, simply ignore this email.
+
+Regards,
+
+Jarvis AI
+Prabu Arvind Portfolio
+
+==================================================
+2026-08-09 16:35:27,378 - NEW VERIFIED CONTACT MESSAGE FROM Prabu Arvind M (prabuarvindm@gmail.com):
+--------------------------------
+New Portfolio Contact
+
+Name:
+Prabu Arvind M
+
+Verified Email:
+prabuarvindm@gmail.com
+
+Subject:
+Verified Job Offer Inquiry
+
+Message:
+
+Testing verified email OTP contact form submission end to end. This message is 100% verified.
+
+--------------------------------
+Sent from: https://myportfolio.com
+Time: 2026-08-09 16:35:27
+Client IP: 127.0.0.1
+
+==================================================
+2026-08-09 16:36:51,323 - DISPATCHED OTP [297904] TO prabuarvindm@gmail.com:
+Hello,
+
+Your verification code is:
+
+297904
+
+This code is valid for 5 minutes.
+If you did not request this code, simply ignore this email.
+
+Regards,
+
+Jarvis AI
+Prabu Arvind Portfolio
+
+==================================================
+2026-08-09 16:40:16,222 - DISPATCHED OTP [896057] TO prabuarvindm@gmail.com:
+Hello,
+
+Your verification code is:
+
+896057
+
+This code is valid for 5 minutes.
+If you did not request this code, simply ignore this email.
+
+Regards,
+
+Jarvis AI
+Prabu Arvind Portfolio
+
+==================================================
+2026-08-09 16:42:05,383 - DISPATCHED OTP [656256] TO visitor@example.com:
+Hello,
+
+Your verification code is:
+
+656256
+
+This code is valid for 5 minutes.
+If you did not request this code, simply ignore this email.
+
+Regards,
+
+Jarvis AI
+Prabu Arvind Portfolio
+
+==================================================
+2026-08-09 16:42:40,820 - DISPATCHED OTP [919554] TO prabuarvindm@gmail.com:
+Hello,
+
+Your verification code is:
+
+919554
+
+This code is valid for 5 minutes.
+If you did not request this code, simply ignore this email.
+
+Regards,
+
+Jarvis AI
+Prabu Arvind Portfolio
+
+==================================================
+2026-08-09 16:48:16,288 - DISPATCHING OTP TO prabuarvindm@gmail.com:
+Hello,
+
+Your verification code is:
+
+419404
+
+This code expires in 5 minutes.
+
+If you did not request this verification,
+please ignore this email.
+
+Regards,
+
+Jarvis AI Assistant
+
+==================================================
+2026-08-09 16:48:22,048 - DISPATCHING OTP TO prabuarvindm@gmail.com:
+Hello,
+
+Your verification code is:
+
+289750
+
+This code expires in 5 minutes.
+
+If you did not request this verification,
+please ignore this email.
+
+Regards,
+
+Jarvis AI Assistant
+
+==================================================
+2026-08-09 16:48:22,128 - DISPATCHING CONTACT NOTIFICATION TO prabuarvind2005@gmail.com:
+Name: Prabu Arvind M
+Email: prabuarvindm@gmail.com
+Subject: Architecture Test
+Message: Testing modular backend architecture with email and OTP service separation.
+
+Time: 2026-08-09 16:48:22
+Browser: Python-urllib/3.12
+IP Address: 127.0.0.1
+
+==================================================
+2026-08-09 16:49:06,402 - DISPATCHING OTP TO prabuarvindm@gmail.com:
+Hello,
+
+Your verification code is:
+
+388506
+
+This code expires in 5 minutes.
+
+If you did not request this verification,
+please ignore this email.
+
+Regards,
+
+Jarvis AI Assistant
+
+==================================================
+2026-08-09 16:51:51,653 - DISPATCHING OTP TO prabuarvind2005@gmail.com:
+Hello,
+
+Your verification code is:
+
+403380
+
+This code expires in 5 minutes.
+
+If you did not request this verification,
+please ignore this email.
+
+Regards,
+
+Jarvis AI Assistant
+
+==================================================
+2026-08-09 16:52:55,852 - DISPATCHING OTP TO prabuarvindm@gmail.com:
+Hello,
+
+Your verification code is:
+
+248287
+
+This code expires in 5 minutes.
+
+If you did not request this verification,
+please ignore this email.
+
+Regards,
+
+Jarvis AI Assistant
+
+==================================================
+2026-08-09 17:02:46,750 - DISPATCHING OTP TO prabuarvindm@gmail.com:
+Hello,
+
+Your verification code is:
+
+183018
+
+This code expires in 5 minutes.
+
+If you did not request this verification,
+please ignore this email.
+
+Regards,
+
+Jarvis AI Assistant
+
+==================================================
+2026-08-09 17:04:07,462 - DISPATCHING OTP TO prabuarvindm@gmail.com:
+Hello,
+
+Your verification code is:
+
+755608
+
+This code expires in 5 minutes.
+
+If you did not request this verification,
+please ignore this email.
+
+Regards,
+
+Jarvis AI Assistant
+
+==================================================
+2026-08-09 17:05:15,788 - DISPATCHING CONTACT NOTIFICATION TO prabuarvind2005@gmail.com:
+Name: Arvind M
+Email: prabuarvindm@gmail.com
+Subject: job offer
+Message: please contact 9876543210
+
+Time: 2026-08-09 17:05:15
+Browser: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.6 Safari/605.1.15
+IP Address: 127.0.0.1
+
+==================================================

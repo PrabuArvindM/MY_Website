@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: prabu-portfolio
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: ENABLE_RATE_LIMIT
+        value: "true"
+      - key: RATE_LIMIT_PER_HOUR
+        value: "5"
+      - key: EMAIL_USER
+        value: prabuarvind2005@gmail.com
+      - key: EMAIL_PASSWORD
+        value: dadj usli dhpm jtrh
+      - key: OPENROUTER_API_KEY
+        sync: false
