@@ -1,12 +1,10 @@
 services:
   - type: web
     name: prabu-portfolio
-    env: docker
-    plan: free
-    dockerfilePath: ./Dockerfile
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     envVars:
-      - key: PORT
-        value: 8080
       - key: ENABLE_RATE_LIMIT
         value: "true"
       - key: RATE_LIMIT_PER_HOUR
