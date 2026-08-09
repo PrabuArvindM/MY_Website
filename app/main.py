@@ -78,10 +78,15 @@ class CachedStaticFiles(StaticFiles):
     def is_not_modified(self, response_headers, request_headers):
         return super().is_not_modified(response_headers, request_headers)
 
-STATIC_DIR = Path(__file__).parent.parent / "static"
+# Robust Static & Root Index Path Resolution
+BASE_DIR = Path(__file__).resolve().parent.parent
+STATIC_DIR = BASE_DIR / "static"
+if not STATIC_DIR.exists():
+    STATIC_DIR = Path.cwd() / "static"
+
 app.mount("/static", CachedStaticFiles(directory=STATIC_DIR), name="static")
 
-# Health Check Endpoint for Google Cloud Run
+# Health Check Endpoint for Google Cloud Run & Render
 @app.get("/health", tags=["Health"])
 @app.get("/api/health", tags=["Health"])
 def health_check():
@@ -91,10 +96,17 @@ def health_check():
     }
 
 # Root HTML Delivery
-@app.get("/", response_class=FileResponse)
+@app.get("/")
 def serve_index():
-    index_file = Path(__file__).parent.parent / "index.html"
-    return FileResponse(index_file)
+    candidates = [
+        BASE_DIR / "index.html",
+        Path.cwd() / "index.html",
+        Path("/app/index.html")
+    ]
+    for candidate in candidates:
+        if candidate.exists():
+            return FileResponse(candidate)
+    return HTMLResponse("<h1>Portfolio website index.html loading...</h1>", status_code=200)
 
 # Custom 404 Error Handler
 @app.exception_handler(404)
