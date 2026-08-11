@@ -6,26 +6,27 @@ import json
 from app.database import get_db_connection
 from app.jarvis_agent import run_jarvis_daily_report
 
+from app.jarvis_openrouter import generate_daily_newsletter
+
 router = APIRouter(prefix="/api/jarvis", tags=["Jarvis AI Agent"])
 ADMIN_SECRET = "PrabuAI2026AdminPass"
 
 @router.get("/dashboard")
-def get_jarvis_dashboard(date: Optional[str] = Query(None)):
+def get_jarvis_dashboard(date: Optional[str] = Query(None), refresh: bool = Query(False)):
+    if refresh:
+        run_jarvis_daily_report(force_today=True)
+        generate_daily_newsletter(force_refresh=True)
+
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    target_date = date or datetime.now().strftime("%Y-%m-%d")
+    target_date = date if (date and isinstance(date, str)) else datetime.now().strftime("%Y-%m-%d")
+
 
     cursor.execute("SELECT * FROM jarvis_daily_reports WHERE report_date = ?", (target_date,))
     row = cursor.fetchone()
 
     if not row:
-        # Fallback to latest available report if requested date doesn't exist
-        cursor.execute("SELECT * FROM jarvis_daily_reports ORDER BY report_date DESC LIMIT 1")
-        row = cursor.fetchone()
-
-    if not row:
-        # Trigger report generation if empty
         run_jarvis_daily_report()
         cursor.execute("SELECT * FROM jarvis_daily_reports ORDER BY report_date DESC LIMIT 1")
         row = cursor.fetchone()
@@ -37,7 +38,6 @@ def get_jarvis_dashboard(date: Optional[str] = Query(None)):
 
     report = dict(row)
 
-    # Parse JSON fields
     return {
         "status": "ONLINE",
         "agent_name": "Jarvis AI Agent",
@@ -72,4 +72,6 @@ def trigger_jarvis_manually(x_admin_passcode: Optional[str] = Header(None)):
         raise HTTPException(status_code=401, detail="Unauthorized admin action.")
     
     run_jarvis_daily_report(force_today=True)
+    generate_daily_newsletter(force_refresh=True)
     return {"status": "success", "message": "Jarvis AI Agent report generated & database updated!"}
+

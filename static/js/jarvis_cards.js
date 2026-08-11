@@ -62,32 +62,61 @@ function renderJarvisThreeCards() {
 }
 
 // 1. CARD 1 DEDICATED READER MODAL
-function openNewsletterModal() {
-  fetch('/api/jarvis-hub/newsletter')
+function openNewsletterModal(refresh = false) {
+  const modal = document.getElementById('blog-modal');
+  const content = document.getElementById('blog-modal-body');
+  if (!modal || !content) return;
+
+  if (refresh) {
+    content.innerHTML = `
+      <div style="text-align: center; padding: 40px; color: var(--accent-cyan);">
+        <i class="fas fa-sync-alt fa-spin" style="font-size: 2rem; margin-bottom: 12px;"></i>
+        <p style="font-size: 1.1rem; font-weight: 600;">Jarvis AI Scanning Live RSS Feeds...</p>
+      </div>
+    `;
+    modal.classList.add('active');
+  }
+
+  const endpoint = refresh ? '/api/jarvis-hub/newsletter?refresh=true' : '/api/jarvis-hub/newsletter';
+
+  fetch(endpoint)
     .then(res => res.json())
     .then(data => {
-      const modal = document.getElementById('blog-modal');
-      const content = document.getElementById('blog-modal-body');
-      if (!modal || !content) return;
+      const articlesHtml = (data.articles || []).map(art => {
+        const sourceButton = (art.source_url && art.source_url !== '#')
+          ? `<a href="${art.source_url}" target="_blank" class="btn btn-outline" style="font-size: 0.8rem; padding: 6px 14px; border-color: var(--accent-cyan); color: var(--accent-cyan); text-decoration: none; margin-top: 12px; display: inline-flex; align-items: center; gap: 6px;">
+               Read Original Story on ${art.source_name || 'Source'} <i class="fas fa-external-link-alt"></i>
+             </a>`
+          : '';
 
-      const articlesHtml = data.articles.map(art => `
-        <div style="background: rgba(255,255,255,0.02); padding: 24px; border-radius: var(--radius-md); border: 1px solid var(--border-glass); margin-bottom: 20px;">
-          <div style="font-size: 0.8rem; font-weight: 700; color: var(--accent-cyan); text-transform: uppercase; margin-bottom: 6px;">${art.company}</div>
-          <h3 style="font-size: 1.3rem; margin-bottom: 10px; color: var(--text-main); line-height: 1.4;">${art.headline}</h3>
-          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 14px;">${art.explanation}</p>
-          <div style="background: rgba(0, 242, 254, 0.04); padding: 12px 16px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-cyan); margin-bottom: 0; font-size: 0.9rem; color: var(--text-main);">
-            <strong>Why it matters:</strong> ${art.why_it_matters}
+        return `
+          <div style="background: rgba(255,255,255,0.02); padding: 24px; border-radius: var(--radius-md); border: 1px solid var(--border-glass); margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 6px;">
+              <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent-cyan); text-transform: uppercase;">${art.company}</span>
+              <span style="font-size: 0.8rem; color: var(--text-dim);"><i class="fas fa-satellite-dish"></i> ${art.source_name || 'Live Source'}</span>
+            </div>
+            <h3 style="font-size: 1.3rem; margin-bottom: 10px; color: var(--text-main); line-height: 1.4;">${art.headline}</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 14px;">${art.explanation}</p>
+            <div style="background: rgba(0, 242, 254, 0.04); padding: 12px 16px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-cyan); margin-bottom: 12px; font-size: 0.9rem; color: var(--text-main);">
+              <strong>Why it matters:</strong> ${art.why_it_matters}
+            </div>
+            ${sourceButton}
           </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
 
       content.innerHTML = `
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
           <div>
-            <span class="section-tag"><i class="fas fa-newspaper"></i> TECH MAGAZINE EDITION</span>
+            <span class="section-tag"><i class="fas fa-newspaper"></i> REAL-TIME AI EDITION</span>
             <h1 style="font-size: 2.2rem; margin-top: 8px; color: var(--text-main);">${data.title}</h1>
-            <div style="color: var(--accent-cyan); font-weight: 600; font-size: 0.95rem; font-family: var(--font-code);">${data.date}</div>
+            <div style="color: var(--accent-cyan); font-weight: 600; font-size: 0.95rem; font-family: var(--font-code);">
+              Updated: ${data.date} (${data.last_scan_time || 'Live Feed'})
+            </div>
           </div>
+          <button class="btn btn-outline" style="padding: 6px 14px; font-size: 0.85rem; border-color: var(--accent-cyan); color: var(--accent-cyan);" onclick="openNewsletterModal(true)">
+            <i class="fas fa-sync-alt"></i> Refresh Live Feeds
+          </button>
         </div>
 
         <div style="background: rgba(0, 242, 254, 0.08); padding: 20px; border-radius: var(--radius-md); border: 1px dashed var(--border-glow); margin-bottom: 30px;">
@@ -95,10 +124,13 @@ function openNewsletterModal() {
           <p style="font-size: 0.98rem; color: var(--text-main); line-height: 1.7; margin: 0;">${data.daily_summary}</p>
         </div>
 
-        <h3 style="font-size: 1.5rem; margin-bottom: 20px; color: var(--accent-cyan);"><i class="fas fa-rss"></i> Today's AI Industry News</h3>
+        <h3 style="font-size: 1.5rem; margin-bottom: 20px; color: var(--accent-cyan);"><i class="fas fa-rss"></i> Today's Live AI News Articles</h3>
         ${articlesHtml}
 
-        <button class="btn btn-primary" onclick="closeBlogModal()" style="margin-top: 20px;">Close Newsletter</button>
+        <div style="display: flex; gap: 12px; margin-top: 20px;">
+          <button class="btn btn-primary" onclick="closeBlogModal()">Close Newsletter</button>
+          <button class="btn btn-outline" style="border-color: var(--accent-cyan); color: var(--accent-cyan);" onclick="openNewsletterModal(true)"><i class="fas fa-sync-alt"></i> Refresh Feeds</button>
+        </div>
       `;
 
       modal.classList.add('active');

@@ -2,12 +2,25 @@ from fastapi import APIRouter, HTTPException, Header
 from typing import Optional
 from app.database import get_db_connection
 from app.jarvis_openrouter import generate_daily_newsletter
+from app.jarvis_agent import run_jarvis_daily_report
 
 router = APIRouter(prefix="/api/jarvis-hub", tags=["JARVIS AI Knowledge Hub"])
 
 @router.get("/newsletter")
-def get_daily_newsletter():
-    return generate_daily_newsletter()
+def get_daily_newsletter(refresh: bool = False):
+    return generate_daily_newsletter(force_refresh=refresh)
+
+@router.get("/news")
+def get_daily_news_alias(refresh: bool = False):
+    payload = generate_daily_newsletter(force_refresh=refresh)
+    return {"news": payload.get("articles", [])}
+
+@router.post("/refresh")
+def refresh_live_newsletter():
+    newsletter = generate_daily_newsletter(force_refresh=True)
+    run_jarvis_daily_report(force_today=True)
+    return {"status": "success", "message": "Live AI news refreshed successfully!", "newsletter": newsletter}
+
 
 @router.get("/ocr-roadmap")
 def get_ocr_roadmap():
