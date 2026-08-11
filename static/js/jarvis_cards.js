@@ -71,8 +71,8 @@ function openNewsletterModal(refresh = false) {
     content.innerHTML = `
       <div style="text-align: center; padding: 40px; color: var(--accent-cyan);">
         <i class="fas fa-sync-alt fa-spin" style="font-size: 2.2rem; margin-bottom: 14px;"></i>
-        <p style="font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px;">Jarvis AI Fetching Real-Time Global News & arXiv Papers...</p>
-        <span style="font-size: 0.85rem; color: var(--accent-cyan); font-family: var(--font-code);">Updating daily intelligence briefing...</span>
+        <p style="font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px;">Jarvis AI Agent Generating Detailed Daily AI Intelligence Reports...</p>
+        <span style="font-size: 0.85rem; color: var(--accent-cyan); font-family: var(--font-code);">Analyzing model architectures, benchmarks & research preprints...</span>
       </div>
     `;
     modal.classList.add('active');
@@ -93,19 +93,61 @@ function openNewsletterModal(refresh = false) {
         ? `<span style="color: #00e676; font-size: 0.8rem; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; margin-left: 8px;"><i class="fas fa-check-circle"></i> Refreshed</span>`
         : '';
 
-      const articlesHtml = (data.articles || []).map(art => `
-        <div style="background: rgba(255,255,255,0.02); padding: 24px; border-radius: var(--radius-md); border: 1px solid var(--border-glass); margin-bottom: 20px;">
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 6px;">
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent-cyan); text-transform: uppercase;">${art.company}</span>
-            <span style="font-size: 0.8rem; color: var(--text-dim); font-weight: 600;"><i class="fas fa-newspaper"></i> ${art.source_name || 'Live Source'}</span>
+      const articlesHtml = (data.articles || []).map((art, idx) => {
+        const highlights = art.key_highlights || [
+          "Architectural Breakthrough: Enhanced throughput and reasoning performance.",
+          "Enterprise API Integration: Seamless REST API, Python SDK, and agent toolchain support.",
+          "Compute Optimization: Reduces inference latency and memory overhead."
+        ];
+
+        const highlightsHtml = highlights.map(h => `
+          <li style="margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px;">
+            <i class="fas fa-check-circle" style="color: var(--accent-cyan); margin-top: 4px; font-size: 0.85rem; flex-shrink: 0;"></i>
+            <span>${h}</span>
+          </li>
+        `).join('');
+
+        return `
+          <div style="background: rgba(255,255,255,0.02); padding: 26px; border-radius: var(--radius-md); border: 1px solid var(--border-glass); margin-bottom: 24px;">
+            <!-- Header Row -->
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 10px;">
+              <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent-cyan); text-transform: uppercase; font-family: var(--font-code);">#${idx + 1} ${art.company}</span>
+              <span style="font-size: 0.8rem; color: var(--text-dim); font-weight: 600;"><i class="fas fa-newspaper"></i> ${art.source_name || 'Live Source'}</span>
+            </div>
+
+            <!-- Headline -->
+            <h3 style="font-size: 1.35rem; margin-bottom: 12px; color: var(--text-main); line-height: 1.4; font-weight: 700;">${art.headline}</h3>
+
+            <!-- Overview -->
+            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.65; margin-bottom: 14px;">
+              ${art.overview || art.explanation}
+            </p>
+
+            <!-- Technical Explanation -->
+            <div style="background: rgba(0, 0, 0, 0.3); padding: 14px 18px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-cyan); margin-bottom: 14px; font-size: 0.92rem; color: var(--text-main); line-height: 1.6;">
+              ${art.explanation}
+            </div>
+
+            <!-- Key Technical Highlights -->
+            <div style="background: rgba(0, 242, 254, 0.03); padding: 16px 20px; border-radius: 12px; border: 1px dashed var(--border-glow); margin-bottom: 14px;">
+              <div style="font-size: 0.8rem; color: var(--accent-cyan); font-weight: 700; margin-bottom: 8px; text-transform: uppercase;">✨ Key Technological Breakthroughs</div>
+              <ul style="list-style: none; padding-left: 0; margin: 0; font-size: 0.88rem; color: var(--text-main); line-height: 1.6;">
+                ${highlightsHtml}
+              </ul>
+            </div>
+
+            <!-- Why It Matters -->
+            <div style="background: rgba(121, 40, 202, 0.04); padding: 14px 18px; border-radius: var(--radius-sm); border: 1px dashed rgba(121, 40, 202, 0.3); margin-bottom: 12px; font-size: 0.9rem; color: var(--text-main);">
+              <strong style="color: var(--accent-violet);">💡 Strategic Industry Impact:</strong> ${art.why_it_matters}
+            </div>
+
+            <!-- Jarvis Assessment -->
+            <div style="background: rgba(0, 230, 118, 0.04); padding: 12px 16px; border-radius: var(--radius-sm); border: 1px dashed rgba(0, 230, 118, 0.3); font-size: 0.88rem; color: var(--text-muted);">
+              <strong style="color: #00e676;">🔬 Jarvis AI Engineering Evaluation:</strong> ${art.jarvis_assessment || art.explanation}
+            </div>
           </div>
-          <h3 style="font-size: 1.3rem; margin-bottom: 10px; color: var(--text-main); line-height: 1.4;">${art.headline}</h3>
-          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 14px;">${art.explanation}</p>
-          <div style="background: rgba(0, 242, 254, 0.04); padding: 12px 16px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-cyan); margin-bottom: 6px; font-size: 0.9rem; color: var(--text-main);">
-            <strong>Why it matters:</strong> ${art.why_it_matters}
-          </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
 
       content.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
@@ -126,7 +168,7 @@ function openNewsletterModal(refresh = false) {
           <p style="font-size: 0.98rem; color: var(--text-main); line-height: 1.7; margin: 0;">${data.daily_summary}</p>
         </div>
 
-        <h3 style="font-size: 1.5rem; margin-bottom: 20px; color: var(--accent-cyan);"><i class="fas fa-rss"></i> Today's Live AI News Articles</h3>
+        <h3 style="font-size: 1.5rem; margin-bottom: 20px; color: var(--accent-cyan);"><i class="fas fa-rss"></i> Detailed AI News & Intelligence Articles</h3>
         ${articlesHtml}
 
         <div style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap;">

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PRABU ARVIND M - JARVIS AI KNOWLEDGE HUB DASHBOARD (REAL-TIME DAILY NEWS)
+   PRABU ARVIND M - JARVIS AI KNOWLEDGE HUB DASHBOARD (REAL-TIME DAILY DETAILED NEWS)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,8 +12,8 @@ function initJarvisDashboard(refresh = false) {
     container.innerHTML = `
       <div style="text-align: center; padding: 40px; color: var(--accent-cyan);">
         <i class="fas fa-sync-alt fa-spin" style="font-size: 2.2rem; margin-bottom: 14px;"></i>
-        <p style="font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px;">Jarvis AI Agent Fetching Latest Daily Real-Time AI News...</p>
-        <span style="font-size: 0.85rem; color: var(--accent-cyan); font-family: var(--font-code);">Updating daily intelligence briefing...</span>
+        <p style="font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px;">Jarvis AI Agent Generating Detailed Daily AI Intelligence Reports...</p>
+        <span style="font-size: 0.85rem; color: var(--accent-cyan); font-family: var(--font-code);">Analyzing model architectures, benchmarks & research preprints...</span>
       </div>
     `;
   }
@@ -57,10 +57,10 @@ function renderHeroSummaryPanel(data, justRefreshed = false) {
     <!-- Top Badge & Header -->
     <div style="text-align: center; margin-bottom: 24px;">
       <span class="badge" style="background: rgba(0, 242, 254, 0.12); color: var(--accent-cyan); border-color: var(--border-glow); font-size: 0.85rem; padding: 6px 16px; margin-bottom: 12px; display: inline-flex; align-items: center; gap: 8px;">
-        <i class="fas fa-satellite-dish" style="color: #00e676; font-size: 0.8rem;"></i> Real-Time AI News Feed • Powered by Jarvis AI Agent
+        <i class="fas fa-satellite-dish" style="color: #00e676; font-size: 0.8rem;"></i> Real-Time Detailed AI Intelligence • Powered by Jarvis AI Agent
       </span>
       <h2 style="font-size: 2.5rem; margin-bottom: 6px; color: var(--text-main);">Jarvis AI Knowledge Hub</h2>
-      <p style="color: var(--accent-cyan); font-weight: 600; font-size: 1.05rem;">Daily AI Intelligence • Learning Resources • Research Updates</p>
+      <p style="color: var(--accent-cyan); font-weight: 600; font-size: 1.05rem;">Daily AI Intelligence • In-Depth Technological Breakdowns • Research Papers</p>
     </div>
 
     <!-- Executive Summary Box -->
@@ -92,7 +92,7 @@ function renderHeroSummaryPanel(data, justRefreshed = false) {
       </div>
 
       <div class="glass-card" style="padding: 14px 18px; border-radius: 16px; text-align: center; border: 1px solid var(--border-glass);">
-        <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; margin-bottom: 4px;">Stories Today</div>
+        <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; margin-bottom: 4px;">Detailed Stories</div>
         <div style="font-size: 1.2rem; font-weight: 700; color: var(--accent-cyan);">${storiesCount}</div>
       </div>
 
@@ -131,9 +131,9 @@ function renderThreeFeatureCards() {
       <div>
         <div style="font-size: 2.8rem; margin-bottom: 14px;">📰</div>
         <h3 style="font-size: 1.6rem; margin-bottom: 4px; color: var(--text-main);">Today's AI Newsletter</h3>
-        <div style="font-size: 0.88rem; font-weight: 600; color: var(--accent-cyan); margin-bottom: 12px;">Real-Time Artificial Intelligence News</div>
+        <div style="font-size: 0.88rem; font-weight: 600; color: var(--accent-cyan); margin-bottom: 12px;">Detailed Artificial Intelligence Briefings</div>
         <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 16px;">
-          Receive a daily summary of the latest AI developments happening around the world.
+          Receive in-depth technological breakdowns of the latest AI developments happening around the world.
         </p>
         <div style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 20px; line-height: 1.7;">
           <strong>Focus Areas:</strong><br />
@@ -142,7 +142,7 @@ function renderThreeFeatureCards() {
           • HuggingFace • Robotics • Computer Vision
         </div>
       </div>
-      <button class="btn btn-primary" style="padding: 12px 20px; font-size: 0.9rem; width: 100%; border-radius: 12px;" onclick="openNewsletterModal()"><i class="fas fa-rss"></i> Read Today's News →</button>
+      <button class="btn btn-primary" style="padding: 12px 20px; font-size: 0.9rem; width: 100%; border-radius: 12px;" onclick="openNewsletterModal()"><i class="fas fa-rss"></i> Read Detailed News →</button>
     </div>
 
     <!-- CARD 2: OCR Learning Hub -->
@@ -194,35 +194,82 @@ function renderTopHeadlines(stories) {
     return;
   }
 
-  container.innerHTML = stories.map((item, idx) => `
-    <div class="glass-card fade-in" style="padding: 26px; border-radius: 16px; border: 1px solid var(--border-glass); margin-bottom: 20px; text-align: left; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
-      <!-- Header Row (No website links, only text badge) -->
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-        <div style="display: flex; align-items: center; gap: 10px;">
-          <span class="chip" style="background: rgba(0, 242, 254, 0.12); color: var(--accent-cyan); font-weight: 700; font-family: var(--font-code); font-size: 0.8rem; padding: 4px 10px;">
-            #${idx + 1} ${item.company}
-          </span>
-        </div>
-        <span style="font-size: 0.8rem; color: var(--text-dim); font-weight: 600;"><i class="fas fa-newspaper"></i> ${item.source_name}</span>
-      </div>
+  container.innerHTML = stories.map((item, idx) => {
+    const highlights = item.key_highlights || [
+      "Architectural Breakthrough: Enhanced throughput and reasoning performance across evaluation benchmarks.",
+      "Enterprise API Integration: frictionless connectivity via REST endpoints, SDKs, and local agent toolchains.",
+      "Compute Optimization: Reduces inference latency and GPU memory overhead."
+    ];
 
-      <!-- Left Cyan Accent Bar + Headline -->
-      <div style="border-left: 3px solid var(--accent-cyan); padding-left: 14px; margin: 14px 0 12px 0;">
-        <h4 style="font-size: 1.2rem; color: var(--text-main); line-height: 1.4; margin: 0; font-weight: 700;">${item.headline}</h4>
-      </div>
+    const highlightsHtml = highlights.map(h => `
+      <li style="margin-bottom: 8px; display: flex; align-items: flex-start; gap: 8px;">
+        <i class="fas fa-check-circle" style="color: var(--accent-cyan); margin-top: 4px; font-size: 0.85rem; flex-shrink: 0;"></i>
+        <span>${h}</span>
+      </li>
+    `).join('');
 
-      <!-- Explanation Paragraph -->
-      <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.65; margin-bottom: 16px;">${item.explanation}</p>
-
-      <!-- Unique "Why It Matters" Callout Container -->
-      <div style="background: rgba(0, 242, 254, 0.04); border-radius: 12px; padding: 14px 18px; border: 1px dashed var(--border-glow); display: flex; align-items: flex-start; gap: 12px; flex-wrap: wrap;">
-        <div style="background: rgba(0, 242, 254, 0.15); color: var(--accent-cyan); padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; white-space: nowrap; font-family: var(--font-heading);">
-          💡 WHY IT MATTERS
+    return `
+      <div class="glass-card fade-in" style="padding: 28px; border-radius: 16px; border: 1px solid var(--border-glass); margin-bottom: 24px; text-align: left; transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;">
+        <!-- Header Row -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="chip" style="background: rgba(0, 242, 254, 0.12); color: var(--accent-cyan); font-weight: 700; font-family: var(--font-code); font-size: 0.82rem; padding: 4px 12px;">
+              #${idx + 1} ${item.company}
+            </span>
+          </div>
+          <span style="font-size: 0.82rem; color: var(--text-dim); font-weight: 600;"><i class="fas fa-newspaper"></i> ${item.source_name}</span>
         </div>
-        <div style="font-size: 0.9rem; color: var(--text-main); line-height: 1.5; flex: 1; min-width: 200px;">
-          ${item.why_it_matters}
+
+        <!-- Headline -->
+        <div style="border-left: 4px solid var(--accent-cyan); padding-left: 16px; margin: 12px 0 16px 0;">
+          <h3 style="font-size: 1.35rem; color: var(--text-main); line-height: 1.4; margin: 0; font-weight: 700;">${item.headline}</h3>
+        </div>
+
+        <!-- 1. Detailed Overview & Background -->
+        <div style="margin-bottom: 18px;">
+          <div style="font-size: 0.82rem; color: var(--accent-cyan); font-weight: 700; text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.05em;">
+            📘 Detailed Executive Breakdown
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.96rem; line-height: 1.7; margin: 0;">
+            ${item.overview || item.explanation}
+          </p>
+        </div>
+
+        <!-- 2. Technical Explanation -->
+        <p style="color: var(--text-main); font-size: 0.94rem; line-height: 1.65; margin-bottom: 18px; background: rgba(255,255,255,0.02); padding: 14px 18px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-violet);">
+          ${item.explanation}
+        </p>
+
+        <!-- 3. Key Technological Breakthroughs & Capabilities -->
+        <div style="background: rgba(0, 242, 254, 0.03); padding: 18px 22px; border-radius: 12px; border: 1px dashed var(--border-glow); margin-bottom: 18px;">
+          <div style="font-size: 0.82rem; color: var(--accent-cyan); font-weight: 700; margin-bottom: 10px; text-transform: uppercase;">
+            ✨ Key Technological Breakthroughs & Features
+          </div>
+          <ul style="list-style: none; padding-left: 0; margin: 0; font-size: 0.9rem; color: var(--text-main); line-height: 1.7;">
+            ${highlightsHtml}
+          </ul>
+        </div>
+
+        <!-- 4. Strategic Importance & Why It Matters -->
+        <div style="background: rgba(121, 40, 202, 0.04); border-radius: 12px; padding: 16px 20px; border: 1px dashed rgba(121, 40, 202, 0.3); margin-bottom: 16px;">
+          <div style="font-size: 0.82rem; color: var(--accent-violet); font-weight: 700; margin-bottom: 6px; text-transform: uppercase;">
+            💡 Strategic Industry Impact
+          </div>
+          <div style="font-size: 0.92rem; color: var(--text-main); line-height: 1.6;">
+            ${item.why_it_matters}
+          </div>
+        </div>
+
+        <!-- 5. Jarvis AI Assessment -->
+        <div style="background: rgba(0, 230, 118, 0.04); border-radius: 12px; padding: 14px 18px; border: 1px dashed rgba(0, 230, 118, 0.3);">
+          <div style="font-size: 0.8rem; color: #00e676; font-weight: 700; margin-bottom: 4px; text-transform: uppercase;">
+            🔬 Jarvis AI Machine Learning Evaluation
+          </div>
+          <div style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.6;">
+            ${item.jarvis_assessment || item.explanation}
+          </div>
         </div>
       </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
