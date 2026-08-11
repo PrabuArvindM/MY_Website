@@ -52,10 +52,10 @@ function renderJarvisHeader(data) {
         </div>
 
         <div style="background: rgba(7, 9, 19, 0.8); padding: 18px 24px; border-radius: var(--radius-md); border: 1px solid var(--border-glass); min-width: 240px;">
-          <div style="font-size: 0.78rem; color: var(--text-dim); text-transform: uppercase; margin-bottom: 4px;">Last Scan</div>
-          <div style="font-size: 1rem; font-weight: 700; color: var(--accent-cyan); font-family: var(--font-code);">${data.report_date} | ${data.last_scan_time}</div>
-          <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; font-family: var(--font-code);">Next Scan: <span style="color: var(--accent-green);">30 minutes</span></div>
-          <button class="btn btn-outline" style="margin-top: 10px; padding: 6px 14px; font-size: 0.75rem; width: 100%;" onclick="triggerJarvisManually()"><i class="fas fa-sync-alt"></i> Trigger Scan</button>
+          <div style="font-size: 0.78rem; color: var(--text-dim); text-transform: uppercase; margin-bottom: 4px;">Update Status</div>
+          <div style="font-size: 1rem; font-weight: 700; color: var(--accent-cyan); font-family: var(--font-code);">${data.report_date}</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; font-family: var(--font-code);">Frequency: <span style="color: var(--accent-green);">Updated Daily</span></div>
+          <button class="btn btn-outline" style="margin-top: 10px; padding: 6px 14px; font-size: 0.75rem; width: 100%;" onclick="triggerJarvisManually()"><i class="fas fa-sync-alt"></i> Refresh News</button>
         </div>
       </div>
 
@@ -101,7 +101,6 @@ function renderTopNews(news) {
           <i class="${item.logo_icon}" style="font-size: 1.5rem; color: var(--accent-cyan);"></i>
           <span style="font-weight: 700; font-size: 0.95rem; color: var(--text-main);">${item.company}</span>
         </div>
-        <span style="font-size: 0.8rem; color: var(--text-dim);"><i class="far fa-clock"></i> ${item.published_time}</span>
       </div>
 
       <h3 style="font-size: 1.25rem; margin-bottom: 10px; color: var(--text-main); line-height: 1.4;">${item.headline}</h3>
@@ -115,11 +114,12 @@ function renderTopNews(news) {
         </ul>
       </div>
 
-      <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;">
-        <div style="color: var(--text-muted);"><strong>Why it matters:</strong> ${item.why_it_matters}</div>
-        <a href="${item.source_url}" target="_blank" class="btn btn-primary" style="padding: 6px 16px; font-size: 0.8rem; flex-shrink: 0; margin-left: 16px;">Official Source <i class="fas fa-external-link-alt"></i></a>
+      <div style="font-size: 0.85rem; color: var(--text-muted);">
+        <strong>Why it matters:</strong> ${item.why_it_matters}
       </div>
     </div>
+  `;
+iv>
   `).join('');
 }
 

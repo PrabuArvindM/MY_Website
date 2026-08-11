@@ -100,9 +100,7 @@ function renderNewsSection(news) {
         </div>
 
         <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 14px; border-top: 1px dashed var(--border-glass); font-size: 0.8rem;">
-          <span style="color: var(--text-dim);"><i class="far fa-clock"></i> ${item.published_time}</span>
           <span style="color: var(--accent-cyan); font-weight: 600;">🔥 ${item.trending_score}/100 Score</span>
-          <a href="${item.source_url}" target="_blank" class="btn btn-outline" style="padding: 4px 10px; font-size: 0.75rem;">Source <i class="fas fa-external-link-alt"></i></a>
         </div>
       </div>
     `;

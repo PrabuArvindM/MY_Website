@@ -71,8 +71,8 @@ function openNewsletterModal(refresh = false) {
     content.innerHTML = `
       <div style="text-align: center; padding: 40px; color: var(--accent-cyan);">
         <i class="fas fa-sync-alt fa-spin" style="font-size: 2.2rem; margin-bottom: 14px;"></i>
-        <p style="font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px;">Jarvis AI Scanning Live Global RSS Feeds & arXiv Papers...</p>
-        <span style="font-size: 0.85rem; color: var(--accent-cyan); font-family: var(--font-code);">Bypassing cache & fetching live developments...</span>
+        <p style="font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px;">Jarvis AI Fetching Real-Time Global News & arXiv Papers...</p>
+        <span style="font-size: 0.85rem; color: var(--accent-cyan); font-family: var(--font-code);">Updating daily intelligence briefing...</span>
       </div>
     `;
     modal.classList.add('active');
@@ -89,33 +89,23 @@ function openNewsletterModal(refresh = false) {
     .then(res => res.json())
     .then(resData => {
       const data = resData.newsletter || resData;
-      const scanTime = data.last_scan_time || 'Live Feed';
       const refreshBadge = refresh
-        ? `<span style="color: #00e676; font-size: 0.8rem; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; margin-left: 8px;"><i class="fas fa-check-circle"></i> Refreshed Just Now (${scanTime})</span>`
+        ? `<span style="color: #00e676; font-size: 0.8rem; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; margin-left: 8px;"><i class="fas fa-check-circle"></i> Refreshed</span>`
         : '';
 
-      const articlesHtml = (data.articles || []).map(art => {
-        const sourceButton = (art.source_url && art.source_url !== '#')
-          ? `<a href="${art.source_url}" target="_blank" class="btn btn-outline" style="font-size: 0.8rem; padding: 6px 14px; border-color: var(--accent-cyan); color: var(--accent-cyan); text-decoration: none; margin-top: 12px; display: inline-flex; align-items: center; gap: 6px;">
-               Read Original Story on ${art.source_name || 'Source'} <i class="fas fa-external-link-alt"></i>
-             </a>`
-          : '';
-
-        return `
-          <div style="background: rgba(255,255,255,0.02); padding: 24px; border-radius: var(--radius-md); border: 1px solid var(--border-glass); margin-bottom: 20px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 6px;">
-              <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent-cyan); text-transform: uppercase;">${art.company}</span>
-              <span style="font-size: 0.8rem; color: var(--text-dim);"><i class="fas fa-satellite-dish"></i> ${art.source_name || 'Live Source'}</span>
-            </div>
-            <h3 style="font-size: 1.3rem; margin-bottom: 10px; color: var(--text-main); line-height: 1.4;">${art.headline}</h3>
-            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 14px;">${art.explanation}</p>
-            <div style="background: rgba(0, 242, 254, 0.04); padding: 12px 16px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-cyan); margin-bottom: 12px; font-size: 0.9rem; color: var(--text-main);">
-              <strong>Why it matters:</strong> ${art.why_it_matters}
-            </div>
-            ${sourceButton}
+      const articlesHtml = (data.articles || []).map(art => `
+        <div style="background: rgba(255,255,255,0.02); padding: 24px; border-radius: var(--radius-md); border: 1px solid var(--border-glass); margin-bottom: 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 6px;">
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--accent-cyan); text-transform: uppercase;">${art.company}</span>
+            <span style="font-size: 0.8rem; color: var(--text-dim); font-weight: 600;"><i class="fas fa-newspaper"></i> ${art.source_name || 'Live Source'}</span>
           </div>
-        `;
-      }).join('');
+          <h3 style="font-size: 1.3rem; margin-bottom: 10px; color: var(--text-main); line-height: 1.4;">${art.headline}</h3>
+          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 14px;">${art.explanation}</p>
+          <div style="background: rgba(0, 242, 254, 0.04); padding: 12px 16px; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-cyan); margin-bottom: 6px; font-size: 0.9rem; color: var(--text-main);">
+            <strong>Why it matters:</strong> ${art.why_it_matters}
+          </div>
+        </div>
+      `).join('');
 
       content.innerHTML = `
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 10px;">
@@ -123,11 +113,11 @@ function openNewsletterModal(refresh = false) {
             <span class="section-tag"><i class="fas fa-newspaper"></i> REAL-TIME AI EDITION ${refreshBadge}</span>
             <h1 style="font-size: 2.2rem; margin-top: 8px; color: var(--text-main);">${data.title}</h1>
             <div style="color: var(--accent-cyan); font-weight: 600; font-size: 0.95rem; font-family: var(--font-code);">
-              Last Scan: ${scanTime} (${data.date})
+              Date: ${data.date}
             </div>
           </div>
           <button class="btn btn-outline" style="padding: 8px 16px; font-size: 0.85rem; border-color: var(--accent-cyan); color: var(--accent-cyan); font-weight: 700;" onclick="openNewsletterModal(true)">
-            <i class="fas fa-sync-alt"></i> ⚡ Refresh Live Feeds
+            <i class="fas fa-sync-alt"></i> Refresh Live News
           </button>
         </div>
 
@@ -141,7 +131,7 @@ function openNewsletterModal(refresh = false) {
 
         <div style="display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap;">
           <button class="btn btn-primary" onclick="closeBlogModal()">Close Newsletter</button>
-          <button class="btn btn-outline" style="border-color: var(--accent-cyan); color: var(--accent-cyan); font-weight: 700;" onclick="openNewsletterModal(true)"><i class="fas fa-sync-alt"></i> ⚡ Refresh Live Feeds</button>
+          <button class="btn btn-outline" style="border-color: var(--accent-cyan); color: var(--accent-cyan); font-weight: 700;" onclick="openNewsletterModal(true)"><i class="fas fa-sync-alt"></i> Refresh Feeds</button>
         </div>
       `;
 

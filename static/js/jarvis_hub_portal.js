@@ -60,7 +60,6 @@ function renderDailyIntelligenceNews(news) {
 
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; padding-top: 14px; border-top: 1px dashed var(--border-glass);">
           <div style="display: flex; gap: 6px; flex-wrap: wrap;">${tagsHtml}</div>
-          <a href="${item.source_url}" target="_blank" class="btn btn-primary" style="padding: 6px 16px; font-size: 0.8rem;">Official Source <i class="fas fa-external-link-alt"></i></a>
         </div>
       </div>
     `;
