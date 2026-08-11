@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Header
+from fastapi import APIRouter, HTTPException, Header, Response
 from typing import Optional
 from app.database import get_db_connection
 from app.jarvis_openrouter import generate_daily_newsletter
@@ -7,19 +7,27 @@ from app.jarvis_agent import run_jarvis_daily_report
 router = APIRouter(prefix="/api/jarvis-hub", tags=["JARVIS AI Knowledge Hub"])
 
 @router.get("/newsletter")
-def get_daily_newsletter(refresh: bool = False):
+def get_daily_newsletter(response: Response = Response(), refresh: bool = False):
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, max-age=0"
+    response.headers["Pragma"] = "no-cache"
     return generate_daily_newsletter(force_refresh=refresh)
 
 @router.get("/news")
-def get_daily_news_alias(refresh: bool = False):
+def get_daily_news_alias(response: Response = Response(), refresh: bool = False):
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, max-age=0"
+    response.headers["Pragma"] = "no-cache"
     payload = generate_daily_newsletter(force_refresh=refresh)
     return {"news": payload.get("articles", [])}
 
 @router.post("/refresh")
-def refresh_live_newsletter():
+def refresh_live_newsletter(response: Response = Response()):
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, max-age=0"
+    response.headers["Pragma"] = "no-cache"
+
     newsletter = generate_daily_newsletter(force_refresh=True)
     run_jarvis_daily_report(force_today=True)
     return {"status": "success", "message": "Live AI news refreshed successfully!", "newsletter": newsletter}
+
 
 
 @router.get("/ocr-roadmap")

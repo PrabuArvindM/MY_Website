@@ -1,21 +1,25 @@
-from fastapi import APIRouter, HTTPException, Header, Query
+from fastapi import APIRouter, HTTPException, Header, Query, Response
 from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime, timedelta
 import json
 from app.database import get_db_connection
 from app.jarvis_agent import run_jarvis_daily_report
-
 from app.jarvis_openrouter import generate_daily_newsletter
 
 router = APIRouter(prefix="/api/jarvis", tags=["Jarvis AI Agent"])
 ADMIN_SECRET = "PrabuAI2026AdminPass"
 
 @router.get("/dashboard")
-def get_jarvis_dashboard(date: Optional[str] = Query(None), refresh: bool = Query(False)):
+def get_jarvis_dashboard(response: Response = Response(), date: Optional[str] = Query(None), refresh: bool = Query(False)):
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate, max-age=0"
+    response.headers["Pragma"] = "no-cache"
+
+
     if refresh:
         run_jarvis_daily_report(force_today=True)
         generate_daily_newsletter(force_refresh=True)
+
 
     conn = get_db_connection()
     cursor = conn.cursor()

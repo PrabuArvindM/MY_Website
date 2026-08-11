@@ -11,17 +11,25 @@ function initJarvisDashboard(refresh = false) {
   if (refresh && container) {
     container.innerHTML = `
       <div style="text-align: center; padding: 40px; color: var(--accent-cyan);">
-        <i class="fas fa-sync-alt fa-spin" style="font-size: 2rem; margin-bottom: 12px;"></i>
-        <p style="font-size: 1.1rem; font-weight: 600;">Jarvis AI Scanning Real-Time Global Feeds & Research Papers...</p>
+        <i class="fas fa-sync-alt fa-spin" style="font-size: 2.2rem; margin-bottom: 14px;"></i>
+        <p style="font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin-bottom: 6px;">Jarvis AI Agent Scanning Real-Time Global RSS Feeds & arXiv Papers...</p>
+        <span style="font-size: 0.85rem; color: var(--accent-cyan); font-family: var(--font-code);">Bypassing cache & fetching live developments...</span>
       </div>
     `;
   }
 
-  const endpoint = refresh ? '/api/jarvis-hub/newsletter?refresh=true' : '/api/jarvis-hub/newsletter';
-  fetch(endpoint)
+  const method = refresh ? 'POST' : 'GET';
+  const endpoint = refresh ? '/api/jarvis-hub/refresh' : ('/api/jarvis-hub/newsletter?_t=' + Date.now());
+
+  fetch(endpoint, {
+    method: method,
+    headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' },
+    cache: 'no-store'
+  })
     .then(res => res.json())
-    .then(data => {
-      renderHeroSummaryPanel(data);
+    .then(resData => {
+      const data = resData.newsletter || resData;
+      renderHeroSummaryPanel(data, refresh);
       renderThreeFeatureCards();
       renderTopHeadlines(data.articles ? data.articles.slice(0, 5) : []);
     })
@@ -33,7 +41,7 @@ function initJarvisDashboard(refresh = false) {
     });
 }
 
-function renderHeroSummaryPanel(data) {
+function renderHeroSummaryPanel(data, justRefreshed = false) {
   const container = document.getElementById('jarvis-hero-summary-container');
   if (!container) return;
 
@@ -41,6 +49,10 @@ function renderHeroSummaryPanel(data) {
   const topSource = (data.articles && data.articles.length > 0) ? data.articles[0].source_name : 'Global RSS Feeds';
   const storiesCount = data.articles ? data.articles.length : 0;
   const scanTime = data.last_scan_time || 'Live Now';
+
+  const refreshBadge = justRefreshed
+    ? `<span style="color: #00e676; font-size: 0.8rem; font-weight: 700; display: inline-flex; align-items: center; gap: 4px; margin-left: 8px;"><i class="fas fa-check-circle"></i> Refreshed Just Now (${scanTime})</span>`
+    : '';
 
   container.innerHTML = `
     <!-- Top Badge & Header -->
@@ -56,14 +68,14 @@ function renderHeroSummaryPanel(data) {
     <div class="glass-card fade-in" style="padding: 24px 28px; border-radius: var(--radius-md); border: 1px solid var(--border-glow); box-shadow: var(--shadow-neon); margin-bottom: 24px; position: relative;">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
         <div style="font-size: 0.85rem; color: var(--accent-cyan); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px;">
-          <i class="fas fa-bolt"></i> Today's Live AI Brief
+          <i class="fas fa-bolt"></i> Today's Live AI Brief ${refreshBadge}
         </div>
-        <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
           <div style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-code);">
-            Updated: <strong style="color: var(--accent-cyan);">${data.date} (${scanTime})</strong>
+            Last Scan: <strong style="color: var(--accent-cyan);">${scanTime} (${data.date})</strong>
           </div>
-          <button class="btn btn-outline" style="padding: 4px 12px; font-size: 0.78rem; border-color: var(--accent-cyan); color: var(--accent-cyan);" onclick="initJarvisDashboard(true)">
-            <i class="fas fa-sync-alt"></i> Refresh Live AI News
+          <button class="btn btn-outline" style="padding: 6px 14px; font-size: 0.82rem; border-color: var(--accent-cyan); color: var(--accent-cyan); font-weight: 700;" onclick="initJarvisDashboard(true)">
+            <i class="fas fa-sync-alt"></i> ⚡ Refresh Live AI News
           </button>
         </div>
       </div>
@@ -76,12 +88,12 @@ function renderHeroSummaryPanel(data) {
     <!-- Metric Cards Row -->
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; margin-bottom: 36px;">
       <div class="glass-card" style="padding: 14px 18px; border-radius: 16px; text-align: center; border: 1px solid var(--border-glass);">
-        <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; margin-bottom: 4px;">Live Date</div>
-        <div style="font-size: 0.95rem; font-weight: 700; color: var(--accent-cyan); font-family: var(--font-code);">${data.date}</div>
+        <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; margin-bottom: 4px;">Last Scan</div>
+        <div style="font-size: 0.92rem; font-weight: 700; color: var(--accent-cyan); font-family: var(--font-code);">${scanTime}</div>
       </div>
 
       <div class="glass-card" style="padding: 14px 18px; border-radius: 16px; text-align: center; border: 1px solid var(--border-glass);">
-        <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; margin-bottom: 4px;">Stories Today</div>
+        <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; margin-bottom: 4px;">Stories Scanned</div>
         <div style="font-size: 1.2rem; font-weight: 700; color: var(--accent-cyan);">${storiesCount}</div>
       </div>
 
@@ -103,7 +115,7 @@ function renderHeroSummaryPanel(data) {
       <div class="glass-card" style="padding: 14px 18px; border-radius: 16px; text-align: center; border: 1px solid var(--border-glass);">
         <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; margin-bottom: 4px;">Feed Status</div>
         <div style="font-size: 0.85rem; font-weight: 700; color: var(--accent-green); display: flex; align-items: center; justify-content: center; gap: 6px;">
-          <i class="fas fa-circle" style="font-size: 0.4rem; color: #00e676;"></i> Live Dynamic
+          <i class="fas fa-circle" style="font-size: 0.4rem; color: #00e676;"></i> Live Synchronized
         </div>
       </div>
     </div>
